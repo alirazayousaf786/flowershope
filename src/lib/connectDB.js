@@ -1,23 +1,27 @@
-// lib/connectDB.js  (or utils/connectDB.js)
+// lib/connectDB.js
 import mongoose from "mongoose";
 
+const MONGODB_URI = process.env.MONGODB_URI;
+
+if (!MONGODB_URI) {
+  throw new Error("MONGODB_URI is not defined");
+}
+
 const connectDB = async () => {
-  // If already connected, reuse the connection
-  if (mongoose.connections[0].readyState) {
+  // reuse connection in serverless
+  if (mongoose.connection.readyState === 1) {
     console.log("Already connected to MongoDB");
     return;
   }
 
   try {
     await mongoose.connect(MONGODB_URI, {
-      bufferCommands: false, // Good for Next.js
+      bufferCommands: false,
     });
     console.log("MongoDB connected successfully");
   } catch (error) {
     console.error("MongoDB connection failed:", error.message);
-    // DO NOT use process.exit(1) here!
-    // Instead, throw the error so the API route can handle it
-    throw new Error("Failed to connect to MongoDB");
+    throw error;
   }
 };
 
