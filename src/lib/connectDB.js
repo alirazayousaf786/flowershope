@@ -9,7 +9,7 @@ const connectDB = async () => {
   }
 
   try {
-    await mongoose.connect(process.env.MONGO_URI, {
+    await mongoose.connect(MONGODB_URI, {
       bufferCommands: false, // Good for Next.js
     });
     console.log("MongoDB connected successfully");
