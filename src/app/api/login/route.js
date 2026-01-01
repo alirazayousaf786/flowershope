@@ -9,17 +9,18 @@ export async function POST(req) {
   ) {
     const res = NextResponse.json({ success: true });
 
-    res.cookies.set("admin", "true", {
+    res.cookies.set("admin", "authenticated", {
       httpOnly: true,
-      path: "/", // important
-      sameSite: "strict",
+      path: "/",
+      sameSite: "lax", 
+      secure: true,    
     });
 
     return res;
   }
 
   return NextResponse.json(
-    { message: "Invalid name or password" },
+    { message: "Invalid credentials" },
     { status: 401 }
   );
 }
