@@ -5,33 +5,42 @@ import connectDB from "@/lib/connectDB";
 import Flower from "@/models/flower";
 import Promotion from "@/models/promotion.js";
 
-import { writeFile } from "fs/promises";
-import path from "path";
 import { NextResponse } from "next/server";
+import { v2 as cloudinary } from "cloudinary";
 
-/* ================= Helper ================= */
+// ================= Cloudinary Config =================
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_KEY,
+  api_secret: process.env.CLOUD_SECRET,
+});
+
+// ================= Helper =================
 async function saveImage(file) {
   if (!file) return null;
 
   const bytes = await file.arrayBuffer();
   const buffer = Buffer.from(bytes);
 
-  const filename = `${Date.now()}-${Math.round(
-    Math.random() * 1e9
-  )}${path.extname(file.name)}`;
+  return new Promise((resolve, reject) => {
+    const stream = cloudinary.uploader.upload_stream(
+      { folder: "flowers" },
+      (error, result) => {
+        if (error) return reject(error);
+        resolve(result.secure_url);
+      }
+    );
 
-  const filepath = path.join(process.cwd(), "public", "uploads", filename);
-  await writeFile(filepath, buffer);
-
-  return `/uploads/${filename}`;
+    stream.end(buffer);
+  });
 }
 
-/* ================= POST ================= */
+// ================= POST =================
 export async function POST(req) {
   try {
     await connectDB();
-    const formData = await req.formData();
 
+    const formData = await req.formData();
     const flowerTitle = formData.get("flowerTitle");
     const flowerPrice = formData.get("flowerPrice");
     const imageFlower = formData.get("imageFlower");
@@ -51,11 +60,14 @@ export async function POST(req) {
       imageFlowerURL: imageUrl,
     });
 
+    console.log("Inserted Flower:", newFlower);
+
     return NextResponse.json(
       { success: true, flower: newFlower },
       { status: 201 }
     );
   } catch (err) {
+    console.error("POST Flower Error:", err.message);
     return NextResponse.json(
       { message: err.message },
       { status: 500 }
@@ -63,18 +75,16 @@ export async function POST(req) {
   }
 }
 
-/* ================= GET (🔥 UPDATED) ================= */
+// ================= GET =================
 export async function GET() {
   try {
     await connectDB();
 
     const flowers = await Flower.find().sort({ createdAt: -1 });
 
-    // 🔥 promotion fetch for flower category
     const promo = await Promotion.findOne({ category: "flower" });
     const percentage = promo ? promo.percentage : 0;
 
-    // 🔥 attach promotionPercentage to each flower
     const flowersWithPromotion = flowers.map((flower) => ({
       ...flower.toObject(),
       promotionPercentage: percentage,
@@ -85,6 +95,7 @@ export async function GET() {
       flowers: flowersWithPromotion,
     });
   } catch (err) {
+    console.error("GET Flowers Error:", err.message);
     return NextResponse.json(
       { message: err.message || "Failed to fetch flowers" },
       { status: 500 }
@@ -92,7 +103,7 @@ export async function GET() {
   }
 }
 
-/* ================= PUT ================= */
+// ================= PUT =================
 export async function PUT(req) {
   try {
     await connectDB();
@@ -124,8 +135,11 @@ export async function PUT(req) {
       { new: true }
     );
 
+    console.log("Updated Flower:", updatedFlower);
+
     return NextResponse.json({ success: true, flower: updatedFlower });
   } catch (err) {
+    console.error("PUT Flower Error:", err.message);
     return NextResponse.json(
       { message: err.message },
       { status: 500 }
@@ -133,7 +147,7 @@ export async function PUT(req) {
   }
 }
 
-/* ================= DELETE ================= */
+// ================= DELETE =================
 export async function DELETE(req) {
   try {
     await connectDB();
@@ -141,13 +155,17 @@ export async function DELETE(req) {
     const { searchParams } = new URL(req.url);
     const id = searchParams.get("id");
 
-    await Flower.findByIdAndDelete(id);
+    if (!id) return NextResponse.json({ message: "Flower ID required" }, { status: 400 });
+
+    const deleted = await Flower.findByIdAndDelete(id);
+    console.log("Deleted Flower:", deleted);
 
     return NextResponse.json({
       success: true,
       message: "Flower deleted successfully",
     });
   } catch (err) {
+    console.error("DELETE Flower Error:", err.message);
     return NextResponse.json(
       { message: err.message },
       { status: 500 }
