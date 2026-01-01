@@ -1,22 +1,28 @@
+// lib/connectDB.js
 import mongoose from "mongoose";
 
 const MONGODB_URI = process.env.MONGODB_URI;
-if (!MONGODB_URI) throw new Error("MONGODB_URI not defined");
 
-let cached = global.mongoose;
+if (!MONGODB_URI) {
+  throw new Error("MONGODB_URI is not defined");
+}
 
-if (!cached) cached = global.mongoose = { conn: null, promise: null };
-
-async function connectDB() {
-  if (cached.conn) return cached.conn;
-
-  if (!cached.promise) {
-    cached.promise = mongoose.connect(MONGODB_URI, { bufferCommands: false })
-      .then((mongoose) => mongoose);
+const connectDB = async () => {
+  // reuse connection in serverless
+  if (mongoose.connection.readyState === 1) {
+    console.log("Already connected to MongoDB");
+    return;
   }
 
-  cached.conn = await cached.promise;
-  return cached.conn;
-}
+  try {
+    await mongoose.connect(MONGODB_URI, {
+      bufferCommands: false,
+    });
+    console.log("MongoDB connected successfully");
+  } catch (error) {
+    console.error("MongoDB connection failed:", error.message);
+    throw error;
+  }
+};
 
 export default connectDB;
