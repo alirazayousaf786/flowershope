@@ -20,17 +20,16 @@ export default function AdminLogin() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, password }),
-        credentials: "include", // ✅ Ensure HttpOnly cookie is set in browser
+        credentials: "include", // ✅ Important for HttpOnly cookie
       });
 
       if (res.ok) {
-        // ✅ Hard redirect to dashboard after login
-        router.push("/admin/dashboard");
+        window.location.href = "/admin/dashboard"; // ✅ Hard redirect ensures cookie loaded
       } else {
         const data = await res.json();
         setError(data.message || "Invalid credentials");
       }
-    } catch (err) {
+    } catch {
       setError("Server error, please try again");
     } finally {
       setLoading(false);
@@ -44,7 +43,6 @@ export default function AdminLogin() {
         onSubmit={handleLogin}
       >
         <h2 className="text-3xl font-bold text-center mb-6">Admin Login</h2>
-
         {error && (
           <p className="bg-red-100 text-red-600 p-2 rounded mb-3">{error}</p>
         )}

@@ -1,3 +1,6 @@
+"use client";
+
+import { useRouter } from "next/navigation";
 import {
   FaUsers,
   FaShoppingCart,
@@ -5,17 +8,40 @@ import {
   FaLeaf,
 } from "react-icons/fa";
 
-export default function Dashboard() {
+export default function AdminDashboard() {
+  const router = useRouter();
+
+  // Logout function
+  const handleLogout = async () => {
+    try {
+      await fetch("/api/logout", {
+        method: "POST",
+        credentials: "include", // ✅ Ensure HttpOnly cookie cleared
+      });
+      router.push("/admin"); // Redirect to login
+    } catch (err) {
+      console.error("Logout failed:", err);
+    }
+  };
+
   return (
-    <div className="space-y-10">
+    <div className="space-y-10 p-6">
       {/* 🌸 Header */}
-      <div className="bg-gradient-to-r from-pink-600 via-rose-500 to-red-500 text-white p-8 rounded-3xl shadow-xl">
-        <h1 className="text-4xl font-extrabold tracking-wide">
-          ParadiseFlower 🌸
-        </h1>
-        <p className="mt-2 text-lg text-pink-100">
-          Premium Flower Shop Dashboard
-        </p>
+      <div className="bg-gradient-to-r from-pink-600 via-rose-500 to-red-500 text-white p-8 rounded-3xl shadow-xl flex justify-between items-center">
+        <div>
+          <h1 className="text-4xl font-extrabold tracking-wide">
+            ParadiseFlower 🌸
+          </h1>
+          <p className="mt-2 text-lg text-pink-100">
+            Premium Flower Shop Dashboard
+          </p>
+        </div>
+        <button
+          onClick={handleLogout}
+          className="bg-white text-red-600 px-5 py-2 rounded-lg font-semibold hover:bg-gray-100 transition"
+        >
+          Logout
+        </button>
       </div>
 
       {/* 📊 Stats */}
