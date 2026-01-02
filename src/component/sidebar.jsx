@@ -21,7 +21,7 @@ export default function Sidebar() {
   const buildProject = async () => {
     if (!confirm("Are you sure you want to build & restart the project?")) return;
 
-    const res = await fetch("/api/admin/build", { method: "POST" });
+    const res = await fetch("/api/build", { method: "POST" });
     const data = await res.json();
 
     if (data.success) {
