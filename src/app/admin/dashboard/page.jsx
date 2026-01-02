@@ -16,7 +16,7 @@ export default function AdminDashboard() {
     try {
       await fetch("/api/logout", {
         method: "POST",
-        credentials: "include", // ✅ Ensure HttpOnly cookie cleared
+        credentials: "include", 
       });
       router.push("/admin"); // Redirect to login
     } catch (err) {

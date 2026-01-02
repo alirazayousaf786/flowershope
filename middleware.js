@@ -15,12 +15,12 @@ export function middleware(req) {
     }
   }
 
-  // Protect dashboard
+  
   if (!isAdmin && path.startsWith("/admin/dashboard")) {
     return NextResponse.redirect(new URL("/admin", req.url));
   }
 
-  // Logged-in admin cannot access login page
+  
   if (isAdmin && path === "/admin") {
     return NextResponse.redirect(new URL("/admin/dashboard", req.url));
   }
