@@ -1,12 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function AdminLogin() {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false); // optional, better UX
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -18,11 +20,12 @@ export default function AdminLogin() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, password }),
+        credentials: "include", // ✅ Ensure HttpOnly cookie is set in browser
       });
 
       if (res.ok) {
-        // ✅ Hard redirect to ensure cookie is picked up by middleware
-        window.location.href = "/admin/dashboard";
+        // ✅ Hard redirect to dashboard after login
+        router.push("/admin/dashboard");
       } else {
         const data = await res.json();
         setError(data.message || "Invalid credentials");
