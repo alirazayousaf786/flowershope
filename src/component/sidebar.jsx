@@ -1,4 +1,5 @@
 "use client";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -15,8 +16,20 @@ export default function Sidebar() {
     { name: "Add Jewelry", path: "/admin/addjewelry" },
     { name: "Add Bridthday", path: "/admin/addbridthday" },
     { name: "Add Discount", path: "/admin/promotion" },
-    
   ];
+
+  const buildProject = async () => {
+    if (!confirm("Are you sure you want to build & restart the project?")) return;
+
+    const res = await fetch("/api/admin/build", { method: "POST" });
+    const data = await res.json();
+
+    if (data.success) {
+      alert("✅ Build completed successfully!");
+    } else {
+      alert("❌ Build failed. Check server logs.");
+    }
+  };
 
   return (
     <aside className="w-64 bg-rose-100 text-black min-h-screen p-5">
@@ -29,14 +42,22 @@ export default function Sidebar() {
             href={item.path}
             className={`block px-4 py-2 rounded-lg ${
               pathname === item.path
-                ? "bg-rose-700"
-                : "text-black hover:bg-rose-800"
+                ? "bg-rose-700 text-white"
+                : "text-black hover:bg-rose-800 hover:text-white"
             }`}
           >
             {item.name}
           </Link>
         ))}
       </nav>
+
+      {/* Build Button */}
+      <button
+        onClick={buildProject}
+        className="mt-10 w-full bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700"
+      >
+        🚀 Build Project
+      </button>
     </aside>
   );
 }
