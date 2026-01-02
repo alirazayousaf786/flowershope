@@ -1,45 +1,42 @@
 #!/bin/bash
+set -euo pipefail
 
-# ===============================
-# CONFIG
-# ===============================
 PROJECT_DIR="/home/flower/public_html/flowershope"
-APP_USER="flower"        # ⚠️ change if different
-APP_GROUP="flower"      # ⚠️ change if different
+APP_USER="flower"
+APP_GROUP="flower"
 PM2_ID=6
+LOG_FILE="$PROJECT_DIR/build.log"
 
-echo "🚀 Starting build process..."
+echo "===============================" | tee -a $LOG_FILE
+echo "🚀 Build started: $(date)" | tee -a $LOG_FILE
+echo "===============================" | tee -a $LOG_FILE
 
-cd $PROJECT_DIR || exit 1
+cd "$PROJECT_DIR" 2>&1 | tee -a $LOG_FILE
 
-echo "📥 Pulling latest code..."
-git pull origin main
+echo "📥 Git pull..." | tee -a $LOG_FILE
+git pull origin main 2>&1 | tee -a $LOG_FILE
 
-echo "📦 Installing dependencies..."
-npm install --production=false
+echo "📦 npm install..." | tee -a $LOG_FILE
+npm install 2>&1 | tee -a $LOG_FILE
 
-echo "🏗️ Building Next.js..."
-npm run build
+echo "🏗️ npm run build..." | tee -a $LOG_FILE
+npm run build 2>&1 | tee -a $LOG_FILE
 
-echo "🔐 Fixing .next permissions..."
-chown -R $APP_USER:$APP_GROUP .next
-chmod -R 755 .next
+echo "🔐 Fixing .next permissions..." | tee -a $LOG_FILE
+chown -R $APP_USER:$APP_GROUP .next 2>&1 | tee -a $LOG_FILE
+chmod -R 755 .next 2>&1 | tee -a $LOG_FILE
 
-# ===============================
-# FIX UPLOADED IMAGES PERMISSIONS
-# ===============================
-# Change this path if uploads folder is different
 UPLOAD_DIR="$PROJECT_DIR/public/uploads"
 
 if [ -d "$UPLOAD_DIR" ]; then
-  echo "🖼️ Fixing uploaded images permissions..."
-  chown -R $APP_USER:$APP_GROUP $UPLOAD_DIR
-  find $UPLOAD_DIR -type d -exec chmod 755 {} \;
-  find $UPLOAD_DIR -type f -exec chmod 644 {} \;
+  echo "🖼️ Fixing upload permissions..." | tee -a $LOG_FILE
+  chown -R $APP_USER:$APP_GROUP "$UPLOAD_DIR" 2>&1 | tee -a $LOG_FILE
+  find "$UPLOAD_DIR" -type d -exec chmod 755 {} \; 2>&1 | tee -a $LOG_FILE
+  find "$UPLOAD_DIR" -type f -exec chmod 644 {} \; 2>&1 | tee -a $LOG_FILE
 fi
 
-echo "🔁 Restarting PM2..."
-pm2 restart $PM2_ID
-pm2 save
+echo "🔁 Restarting PM2 (ID: $PM2_ID)..." | tee -a $LOG_FILE
+pm2 restart $PM2_ID 2>&1 | tee -a $LOG_FILE
+pm2 save 2>&1 | tee -a $LOG_FILE
 
-echo "✅ Build & permissions fixed successfully!"
+echo "✅ Build finished successfully!" | tee -a $LOG_FILE
