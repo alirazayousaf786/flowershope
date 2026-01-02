@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 export async function POST() {
   return new Promise((resolve) => {
     exec(
-      "bash /home/flower/public_html/flowershop/build.sh",
+      "bash /home/flower/public_html/flowershope/build.sh",
       (error, stdout, stderr) => {
         if (error) {
           resolve(
