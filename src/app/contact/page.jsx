@@ -136,7 +136,7 @@ const Contact = () => {
                 <span className="text-rose-600 text-3xl">📞</span>
                 <div>
                   <h4 className="font-semibold text-gray-800 text-lg">Phone</h4>
-                  <p className="text-gray-600">+92 300 1234567</p>
+                  <p className="text-gray-600">+92 031 3000940</p>
                 </div>
               </div>
 
@@ -144,11 +144,11 @@ const Contact = () => {
                 <span className="text-rose-600 text-3xl">✉️</span>
                 <div>
                   <h4 className="font-semibold text-gray-800 text-lg">Email</h4>
-                  <p className="text-gray-600">info@flowershop.com</p>
+                  <p className="text-gray-600">paradiseflowerswl90@gmail.com</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-4">
+              {/* <div className="flex items-start gap-4">
                 <span className="text-rose-600 text-3xl">⏰</span>
                 <div>
                   <h4 className="font-semibold text-gray-800 text-lg">Working Hours</h4>
@@ -157,7 +157,7 @@ const Contact = () => {
                     Sunday: 10:00 AM - 6:00 PM
                   </p>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
 

@@ -1,12 +1,13 @@
-import { Geist } from "next/font/google";
+import { Elsie_Swash_Caps } from "next/font/google";
 import Footer from "@/component/footer.jsx";
 import Header from "@/component/headers.jsx";
 import Whatsapp from "@/component/whatsapp.jsx";
 import "./globals.css";
 
-const geist = Geist({
-  variable: "--font-geist",
+const myFont = Elsie_Swash_Caps({
   subsets: ["latin"],
+  weight: ["400", "900"],
+  display: "swap",
 });
 
 export const metadata = {
@@ -17,7 +18,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={geist.className}>
+      <body className={myFont.className}>
         <Header />
         {children}
         <Whatsapp />

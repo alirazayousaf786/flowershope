@@ -6,7 +6,7 @@ const products = [
   { id: 1, name: "Gift", img: "/f1.jpg", rate: "PKR 2,400" },
   { id: 2, name: "Flower Box", img: "/f2.jpg", rate: "PKR 1,800" },
   { id: 3, name: "Bouquet", img: "/f3.jpg", rate: "PKR 2,200" },
-  { id: 4, name: "Bouquet", img: "/f4.jpg", rate: "PKR 2,200" },
+  { id: 4, name: "Bouquet", img: "/f6.jpg", rate: "PKR 2,200" },
   { id: 5, name: "Bouquet", img: "/f4.jpg", rate: "PKR 2,200" },
 ];
 

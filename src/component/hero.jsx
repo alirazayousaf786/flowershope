@@ -8,33 +8,33 @@ const Hero = () => {
 
   const slides = [
     {
-      image: "/car3.jpg",
-      title: "Car Decoration",
-      subtitle: "Beautiful flower decorations for your special occasions",
+      image: "/h2.jpeg",
+      title: "Money Bought",
+      subtitle: "Celebrate your love with beautiful Money Bought arrangements",
       buttonText: "Book Decoration",
     },
     {
-      image: "/mesairi-1.jpg",
-      title: "Wedding Special",
+      image: "/h2.jpeg",
+      title: "Room Decor",
       subtitle: "Make your special day unforgettable with elegant arrangements",
       buttonText: "View Collection",
     },
     {
-      image: "/cack4.jpg",
-      title: "Anniversary Gifts",
+      image: "/h1.jpeg",
+      title: "Flower Bought",
       subtitle: "Celebrate your love with beautiful flower arrangements",
       buttonText: "Shop Anniversary",
     },
     {
-      image: "/bridthday-1.jpg",
-      title: "Birthday",
-      subtitle: "Thoughtful gifts wrapped with love and care",
+      image: "/h5.jpeg",
+      title: "Balloon Decor",
+      subtitle: "Thoughtful gifts wrapped with love and care and Bacground Decorate",
       buttonText: "Explore Gifts",
     },
     {
-      image: "/f2.jpg",
-      title: "Beautiful Guldasta",
-      subtitle: "Fresh and elegant bouquets for every occasion",
+      image: "/h4.jpeg",
+      title: "Flower Jewelry",
+      subtitle: "Fresh and elegant Flower Jewelry is the wedding for every occasion",
       buttonText: "Shop Now",
     },
   ];

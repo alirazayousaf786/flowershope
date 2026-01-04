@@ -10,7 +10,7 @@ const About = () => {
     <div className="max-w-7xl mx-auto px-5 py-16">
       {/* Heading */}
       <h1 className="text-4xl md:text-5xl font-bold text-rose-700 text-center mb-12">
-        About Pardesi Flower
+        About Paradise Flower
       </h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -40,7 +40,7 @@ const About = () => {
           {/* Social Media Icons */}
           <div className="flex gap-6 items-center pt-4">
             <a
-              href="https://www.facebook.com/profile.php?id=61571733101535"
+              href="https://www.facebook.com/share/p/1EvjntyFnY/"
               target="_blank"
               className="flex items-center gap-2 text-blue-600 hover:scale-110 transition"
             >
@@ -49,7 +49,7 @@ const About = () => {
             </a>
 
             <a
-              href="https://www.instagram.com/paradiseflowersahiwal"
+              href="https://www.instagram.com/paradise_flower90?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
               target="_blank"
               className="flex items-center gap-2 text-pink-600 hover:scale-110 transition"
             >
