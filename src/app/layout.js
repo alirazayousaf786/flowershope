@@ -1,10 +1,10 @@
-import { Elsie_Swash_Caps } from "next/font/google";
+import { Nunito  } from "next/font/google";
 import Footer from "@/component/footer.jsx";
 import Header from "@/component/headers.jsx";
 import Whatsapp from "@/component/whatsapp.jsx";
 import "./globals.css";
 
-const myFont = Elsie_Swash_Caps({
+const myFont = Nunito ({
   subsets: ["latin"],
   weight: ["400", "900"],
   display: "swap",

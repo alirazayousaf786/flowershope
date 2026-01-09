@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -58,7 +59,7 @@ const Hero = () => {
   }, [isAutoPlaying, currentSlide]);
 
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-black">
+    <div className="relative w-full h-screen overflow-hidden bg-rose-100">
       {/* Background Slides */}
       {slides.map((slide, index) => (
         <div
@@ -69,11 +70,16 @@ const Hero = () => {
               : "opacity-0 scale-110"
           }`}
         >
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${slide.image})` }}
-          />
-          <div className="absolute inset-0 bg-black/30" />
+          <div className="relative w-full h-full">
+            <Image
+              src={slide.image}
+              alt={slide.title}
+              fill
+              className="object-contain"
+              priority={index === 0}
+            />
+          </div>
+          {/* <div className="absolute inset-0 bg-rose-100/20" /> */}
         </div>
       ))}
 
@@ -90,20 +96,20 @@ const Hero = () => {
               } absolute inset-0 flex flex-col items-center justify-center`}
             >
               <h1
-                className="text-5xl md:text-7xl lg:text-8xl font-light tracking-tight text-white mb-6"
+                className="text-5xl md:text-7xl lg:text-8xl font-light tracking-tight text-rose-800 mb-6"
                 style={{
                   fontFamily: "'Playfair Display', serif",
-                  textShadow: "0 4px 20px rgba(255,255,255,0.3)",
+                  textShadow: "0 4px 20px rgba(225,29,72,0.3)",
                 }}
               >
                 {slide.title}
               </h1>
 
               <p
-                className="text-xl md:text-2xl lg:text-3xl text-white mb-10 font-light tracking-wide max-w-3xl"
+                className="text-xl md:text-2xl lg:text-3xl text-rose-700 mb-10 font-light tracking-wide max-w-3xl"
                 style={{
                   fontFamily: "'Montserrat', sans-serif",
-                  textShadow: "0 2px 10px rgba(255,255,255,0.2)",
+                  textShadow: "0 2px 10px rgba(225,29,72,0.2)",
                 }}
               >
                 {slide.subtitle}
@@ -111,11 +117,11 @@ const Hero = () => {
 
               <button
                 onClick={() => setIsAutoPlaying(false)}
-                className="group relative px-10 py-4 text-lg tracking-widest font-medium border-2 border-white text-white overflow-hidden transition-all duration-500 hover:scale-105"
+                className="group relative px-10 py-4 text-lg tracking-widest font-medium border-2 border-rose-600 text-rose-600 overflow-hidden transition-all duration-500 hover:scale-105"
                 style={{ fontFamily: "'Montserrat', sans-serif" }}
               >
-                <span className="absolute inset-0 bg-white/20 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></span>
-                <span className="relative z-10 group-hover:text-black transition-colors duration-500">
+                <span className="absolute inset-0 bg-rose-600/20 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></span>
+                <span className="relative z-10 group-hover:text-white transition-colors duration-500">
                   {slide.buttonText}
                 </span>
               </button>
@@ -133,8 +139,8 @@ const Hero = () => {
         className="absolute left-6 md:left-12 top-1/2 -translate-y-1/2 group"
         aria-label="Previous slide"
       >
-        <div className="w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-white/60 backdrop-blur-sm bg-black/20 flex items-center justify-center hover:scale-110 transition-all">
-          <ChevronLeft className="w-8 h-8 text-white" />
+        <div className="w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-rose-600/60 backdrop-blur-sm bg-rose-100/20 flex items-center justify-center hover:scale-110 transition-all">
+          <ChevronLeft className="w-8 h-8 text-rose-600" />
         </div>
       </button>
 
@@ -146,8 +152,8 @@ const Hero = () => {
         className="absolute right-6 md:right-12 top-1/2 -translate-y-1/2 group"
         aria-label="Next slide"
       >
-        <div className="w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-white/60 backdrop-blur-sm bg-black/20 flex items-center justify-center hover:scale-110 transition-all">
-          <ChevronRight className="w-8 h-8 text-white" />
+        <div className="w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-rose-600/60 backdrop-blur-sm bg-rose-100/20 flex items-center justify-center hover:scale-110 transition-all">
+          <ChevronRight className="w-8 h-8 text-rose-600" />
         </div>
       </button>
 
@@ -166,8 +172,8 @@ const Hero = () => {
             <div
               className={`h-1 transition-all duration-500 rounded-full ${
                 index === currentSlide
-                  ? "w-12 bg-white"
-                  : "w-8 bg-white/70"
+                  ? "w-12 bg-rose-600"
+                  : "w-8 bg-rose-600/70"
               }`}
             />
           </button>
