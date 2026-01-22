@@ -64,7 +64,7 @@ const FlowerList = () => {
                   <img
                     src={flower.imageFlowerURL}
                     alt={flower.flowerTitle}
-                    className="w-full h-full object-cover hover:scale-105 transition"
+                    className="w-full h-full object-contain transition"
                   />
 
                   {flower.promotionPercentage > 0 && (
