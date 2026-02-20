@@ -96,21 +96,21 @@ const Hero = () => {
               } absolute inset-0 flex flex-col items-center justify-center`}
             >
               <h1
-                className="text-5xl md:text-7xl lg:text-8xl font-light tracking-tight text-rose-800 mb-6"
-                style={{
-                  fontFamily: "'Playfair Display', serif",
-                  textShadow: "0 4px 20px rgba(225,29,72,0.3)",
-                }}
+                className="text-5xl md:text-7xl text-white lg:text-8xl font-light tracking-tight text-rose-800 mb-6"
+                // style={{
+                //   fontFamily: "'Playfair Display', serif",
+                //   textShadow: "0 4px 20px rgba(225,29,72,0.3)",
+                // }}
               >
                 {slide.title}
               </h1>
 
               <p
-                className="text-xl md:text-2xl lg:text-3xl text-rose-700 mb-10 font-light tracking-wide max-w-3xl"
-                style={{
-                  fontFamily: "'Montserrat', sans-serif",
-                  textShadow: "0 2px 10px rgba(225,29,72,0.2)",
-                }}
+                className="text-xl md:text-2xl lg:text-3xl text-rose-700 mb-10 text-white font-light tracking-wide max-w-3xl"
+                // style={{
+                //   fontFamily: "'Montserrat', sans-serif",
+                //   textShadow: "0 2px 10px rgba(225,29,72,0.2)",
+                // }}
               >
                 {slide.subtitle}
               </p>

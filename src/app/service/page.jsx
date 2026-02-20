@@ -3,35 +3,35 @@ import { FaWhatsapp } from "react-icons/fa";
 
 const services = [
   {
-    title: "Gift Bought",
+    title: "Gift Deals",
     description:
       "Send love and happiness with our curated gift flower arrangements. Perfect for birthdays, anniversaries, or any special occasion.",
     img: "/f3.jpg",
     rate: "Starting at 1000",
   },
   {
-    title: "Anniversary Bought",
+    title: "Anniversary Deals",
     description:
       "Make your anniversaries unforgettable with premium floral arrangements designed to impress your loved one.",
     img: "/f2.jpg",
     rate: "Starting at 2000",
   },
   {
-    title: "Birthday Bought",
+    title: "Birthday Setup",
     description:
       "Celebrate birthdays with vibrant and fresh flowers. Our birthday bouquets are designed to brighten anyone’s day.",
     img: "/f5.jpg",
     rate: "Starting at 15000",
   },
   {
-    title: "Wedding Flowers",
+    title: "Rooms Decor",
     description:
       "Elegant and luxurious wedding flower arrangements to make your special day magical and memorable.",
     img: "/mesairi-2.jpg",
     rate: "Starting at 20000",
   },
   {
-    title: "Car Decoration",
+    title: "Car Decor",
     description:
       "Premium floral car decoration for weddings, anniversaries, and special celebrations.",
     img: "/car3.jpg",
@@ -45,7 +45,7 @@ const services = [
     rate: "Starting at 20000",
   },
   {
-    title: "Birthday Cake",
+    title: "Cakes by Paradise",
     description:
       "Decorate your celebrations with delicious and beautifully designed cakes.",
     img: "/cack1.jpg",

@@ -91,25 +91,20 @@ const GiftingGrid = () => {
       </div>
 
       {/* Service Cities Section */}
-      <div className="mt-20 max-w-7xl mx-auto bg-white/70 backdrop-blur-sm rounded-3xl p-10 shadow-xl border border-rose-100">
-        <h3 className="text-4xl font-bold text-rose-800 mb-6 text-center">
-          Service Cities in Pakistan 🇵🇰
-        </h3>
+     <div className="mt-20 max-w-7xl mx-auto bg-white/70 backdrop-blur-sm rounded-3xl p-10 shadow-xl border border-rose-100">
+  <h3 className="text-4xl font-bold text-rose-800 mb-6 text-center">
+    Service Areas in Pakistan 🇵🇰
+  </h3>
 
-        <p className="text-gray-700 text-lg md:text-xl text-center leading-relaxed mb-10 max-w-4xl mx-auto">
-          We proudly provide our flower and decoration services in the following cities:
-        </p>
+  <p className="text-gray-700 text-lg md:text-xl text-center leading-relaxed mb-10 max-w-4xl mx-auto">
+    We proudly provide our flower and decoration services in Sahiwal and all across Pakistan.
+  </p>
 
-        <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-rose-700 font-medium text-lg">
-          <span>• Arifwala</span>
-          <span>• Pakpattan</span>
-          <span>• Islamabad</span>
-          <span>• Faisalabad</span>
-          <span>• Okara</span>
-          <span>• Sahiwal</span>
-          <span>• Chichawatni</span>
-        </div>
-      </div>
+  <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-rose-700 font-medium text-lg">
+    <span>• Sahiwal</span>
+    <span>• All Pakistan</span>
+  </div>
+</div>
 
       {/* Custom Animation */}
       <style jsx>{`

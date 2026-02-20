@@ -1,6 +1,6 @@
 import React from "react";
-import Image from "next/image"; 
-import Link from "next/link"; 
+import Image from "next/image";
+import Link from "next/link";
 
 const products = [
   { id: 1, name: "Gift", img: "/f1.jpg", rate: "PKR 2,400" },
@@ -19,11 +19,11 @@ const Product = () => {
           Our Products 🌸
         </h1>
 
-        <Link href="/product">
+        {/* <Link href="/product">
           <button className="px-6 py-3 border-2 border-rose-600 text-rose-600 font-semibold rounded-xl hover:bg-rose-600 hover:text-white transition duration-300">
             More Products
           </button>
-        </Link>
+        </Link> */}
       </div>
 
       {/* Product Grid */}
@@ -31,8 +31,9 @@ const Product = () => {
         {products.map((product) => (
           <div
             key={product.id}
-            className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer"
+            className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer flex flex-col"
           >
+            {/* Product Image */}
             <div className="relative h-52 md:h-64">
               <Image
                 src={product.img}
@@ -44,13 +45,23 @@ const Product = () => {
               />
             </div>
 
-            <div className="p-5 text-center">
-              <h2 className="text-xl font-semibold text-rose-600 mb-2">
-                {product.name}
-              </h2>
-              <p className="text-gray-800 font-bold text-lg">
-                {product.rate}
-              </p>
+            {/* Product Info */}
+            <div className="p-5 text-center flex flex-col flex-1 justify-between">
+              <div>
+                <h2 className="text-xl font-semibold text-rose-600 mb-2">
+                  {product.name}
+                </h2>
+                <p className="text-gray-800 font-bold text-lg">
+                  {product.rate}
+                </p>
+              </div>
+
+              {/* View Button */}
+              <Link href="/product">
+                <button className="mt-4 w-full px-4 py-2 bg-rose-600 text-white font-semibold rounded-xl hover:bg-rose-700 transition duration-300">
+                  View
+                </button>
+              </Link>
             </div>
           </div>
         ))}
