@@ -9,7 +9,7 @@ const Hero = () => {
 
   const slides = [
     {
-      image: "/h2.jpeg",
+      image: "/note.jpeg",
       title: "Money Bought",
       subtitle: "Celebrate your love with beautiful Money Bought arrangements",
       buttonText: "Book Decoration",

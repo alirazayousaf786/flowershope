@@ -6,7 +6,7 @@ const services = [
     title: "Gift Deals",
     description:
       "Send love and happiness with our curated gift flower arrangements. Perfect for birthdays, anniversaries, or any special occasion.",
-    img: "/f3.jpg",
+    img: "/gift.jpeg",
     rate: "Starting at 1000",
   },
   {
@@ -72,7 +72,7 @@ const Service = () => {
               alt={service.title}
               width={400}
               height={250}
-              className="w-full h-56 object-cover"
+              className="w-full h-56 object-contain"
             />
 
             <div className="p-6 flex flex-col flex-grow">
